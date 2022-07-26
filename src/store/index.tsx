@@ -1,7 +1,7 @@
 import { configureStore } from '@reduxjs/toolkit'
-import repositoriesReducer from './reducers/repositoriesReducers'
+import repositoriesReducer from './slices/repositoriesReducers'
 
-export * from './reducers/repositoriesReducers'
+export * from './slices/repositoriesReducers'
 
 export const store = configureStore({
   reducer: {
