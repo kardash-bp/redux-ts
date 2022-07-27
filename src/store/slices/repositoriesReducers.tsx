@@ -22,13 +22,11 @@ const repositoriesSlice = createSlice({
       state.loading = false
 
       state.data = action.payload
-      console.log(state)
       return state
     },
     searchError: (state, action: PayloadAction<string>): StateBlueprint => {
       state.loading = false
       state.error = action.payload
-      console.log(state)
       return state
     },
   },

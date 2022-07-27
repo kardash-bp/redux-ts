@@ -1,14 +1,12 @@
 import { useEffect } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
-import { getData, StateBlueprint, RootState } from './store'
+import { useDispatch, useSelector } from './store'
+import { getData } from './store'
 import './App.css'
 
 function App() {
   const dispatch = useDispatch()
   // const { loading, data, error }: StateBlueprint = useSelector(dataSelector)
-  const { loading, data, error }: StateBlueprint = useSelector(
-    (state: RootState) => state.repositories
-  )
+  const { loading, data, error } = useSelector((state) => state.repositories)
 
   useEffect(() => {
     dispatch(getData('react'))
@@ -22,7 +20,7 @@ function App() {
     if (error) return <strong>data not available at this time</strong>
 
     // regular data workflow
-    return data?.map((d) => <li> {d} </li>)
+    return data?.map((d, index) => <li key={index}> {d} </li>)
   }
   console.log(data)
   // template
