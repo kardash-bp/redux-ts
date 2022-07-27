@@ -1,16 +1,16 @@
 import { configureStore } from '@reduxjs/toolkit'
-import repositoriesReducer from './slices/repositoriesReducers'
+import repositoriesSlice from './slices/repositoriesSlice'
 import {
   useSelector as rawUseSelector,
   TypedUseSelectorHook,
   useDispatch as rawUseDispatch,
 } from 'react-redux'
 
-export * from './slices/repositoriesReducers'
+export * from './slices/repositoriesSlice'
 
 export const store = configureStore({
   reducer: {
-    repositories: repositoriesReducer,
+    repositories: repositoriesSlice,
   },
   // show the devTools only in development
   devTools: process.env.NODE_ENV !== 'production',
