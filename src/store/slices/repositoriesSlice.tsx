@@ -1,5 +1,10 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit'
-import { getRepositories } from '../actions'
+import { createSlice } from '@reduxjs/toolkit'
+import {
+  getRepositories,
+  startSearch,
+  searchError,
+  searchSuccess,
+} from '../actions'
 
 export interface StateBlueprint {
   loading: boolean
@@ -16,20 +21,9 @@ const repositoriesSlice = createSlice({
   name: 'repositories',
   initialState,
   reducers: {
-    startSearch: () => {
-      return { loading: true, error: null, data: [] }
-    },
-    searchSuccess: (state, action: PayloadAction<string[]>): StateBlueprint => {
-      state.loading = false
-
-      state.data = action.payload
-      return state
-    },
-    searchError: (state, action: PayloadAction<string>): StateBlueprint => {
-      state.loading = false
-      state.error = action.payload
-      return state
-    },
+    startSearch,
+    searchSuccess,
+    searchError,
   },
   extraReducers: (builder) => {
     builder.addCase(getRepositories.pending, (state) => {
@@ -44,8 +38,8 @@ const repositoriesSlice = createSlice({
     })
   },
 })
-export const { startSearch, searchError, searchSuccess } =
-  repositoriesSlice.actions
+// export const { startSearch, searchError, searchSuccess } =
+//   repositoriesSlice.actions
 export default repositoriesSlice.reducer
 
 // export function getData(term: string): any {
