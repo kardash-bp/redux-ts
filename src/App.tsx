@@ -1,16 +1,12 @@
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from './store'
-import { getRepositories } from './store/actions/getRepositories'
 import './App.css'
+import RepoSearch from './components/RepoSearch'
 
 function App() {
-  const dispatch = useDispatch()
   // const { loading, data, error }: StateBlueprint = useSelector(dataSelector)
   const { loading, data, error } = useSelector((state) => state.repositories)
 
-  useEffect(() => {
-    dispatch(getRepositories('test'))
-  }, [])
   // render the data
   const renderData = () => {
     // loading state
@@ -24,13 +20,19 @@ function App() {
     // regular data workflow
     return data?.map((d, index) => <li key={index}> {d} </li>)
   }
+
   console.log(data)
   // template
   return (
-    <div>
-      <h1>Search Results</h1>
+    <div className='container'>
+      <div>
+        <h1>Search Results</h1>
 
-      <ul>{renderData()}</ul>
+        <ul>{renderData()}</ul>
+      </div>
+      <div>
+        <RepoSearch />
+      </div>
     </div>
   )
 }
